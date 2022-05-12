@@ -34,6 +34,11 @@ const routes: Routes = [
             (m) => m.UploadModule
           ),
       },
+      {
+        path: 'search',
+        loadChildren: () =>
+          import('./modules/search/search.module').then((m) => m.SearchModule),
+      },
     ],
   },
 ];

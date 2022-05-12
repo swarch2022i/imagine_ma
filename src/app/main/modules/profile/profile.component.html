@@ -1,9 +1,11 @@
-<ion-card>
-  <ion-card-header>
-    <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
-    <ion-card-title>Awesome Profile</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    Awesome content
-  </ion-card-content>
-</ion-card>
+<ion-content>
+  <ion-list>
+    <app-image [variable]="'somevalue'"></app-image>
+    <app-image [variable]="'somevalue'"></app-image>
+    <app-image [variable]="'somevalue'"></app-image>
+  </ion-list>
+  <ion-infinite-scroll threshold="100px" [disabled]="false" position="bottom" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Caragando imagenes">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
