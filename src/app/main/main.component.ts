@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APP_PAGES } from './models/pages.models';
 
 @Component({
   selector: 'app-main',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-
-  constructor() { }
+  pages = APP_PAGES;
+  constructor() {}
 
   ngOnInit() {}
-
+  onClick() {
+    console.log('hola');
+  }
 }

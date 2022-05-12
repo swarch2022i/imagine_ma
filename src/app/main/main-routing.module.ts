@@ -9,25 +9,37 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'profile', pathMatch: 'full' },
       {
+        path: 'home',
+        loadChildren: () =>
+          import('./modules/home/home.module').then((m) => m.HomeModule),
+      },
+      {
         path: 'profile',
         loadChildren: () =>
           import('./modules/profile/profile.module').then(
             (m) => m.ProfileModule
-          )
+          ),
       },
       {
         path: 'settings',
         loadChildren: () =>
           import('./modules/settings/settings.module').then(
             (m) => m.SettingsModule
-          )
-      }
-    ]
-  }
+          ),
+      },
+      {
+        path: 'upload',
+        loadChildren: () =>
+          import('./modules/upload-image/upload-image.module').then(
+            (m) => m.UploadModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class MainRoutingModule {}
