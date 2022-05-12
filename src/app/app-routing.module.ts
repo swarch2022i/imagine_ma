@@ -10,23 +10,22 @@ const routes: Routes = [
       {
         path: 'auth',
         loadChildren: () =>
-          import('./core/auth/auth.module').then((m) => m.AuthModule)
+          import('./core/auth/auth.module').then((m) => m.AuthModule),
       },
       {
         path: '',
         loadChildren: () =>
-          import('./main/main.module').then((m) => m.MainModule)
+          import('./main/main.module').then((m) => m.MainModule),
       },
-    ]
+    ],
   },
-  { path: '**', pathMatch: 'full', redirectTo: '' }
-
+  { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

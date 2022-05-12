@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',
     component: MainComponent,
     children: [
-      { path: '', redirectTo: 'profile', pathMatch: 'full' },
+      { path: '', redirectTo: '/home', pathMatch: 'full' },
       {
         path: 'home',
         loadChildren: () =>
