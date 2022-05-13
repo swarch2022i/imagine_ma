@@ -35,6 +35,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'collection',
+        loadChildren: () =>
+          import('./modules/collection/collection.module').then(
+            (m) => m.CollectionModule
+          ),
+      },
+      {
         path: 'search',
         loadChildren: () =>
           import('./modules/search/search.module').then((m) => m.SearchModule),
