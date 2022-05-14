@@ -15,14 +15,18 @@ export class UploadImageComponent implements OnInit {
   });
   public loadImage = false;
   public tags: string[] = [];
+  public showButton = true;
+  file;
+  url = '';
 
   constructor(private alertController: AlertController) {}
 
   ngOnInit() {}
 
-  public uploadImageFromGallery() {
-    console.log('works');
-    this.loadImage = true;
+  public uploadImageFromGallery(e): void {
+    this.file = e.target.files[0];
+    this.url = URL.createObjectURL(e.target.files[0]);
+    this.showButton = false;
   }
 
   public publish() {
@@ -30,7 +34,7 @@ export class UploadImageComponent implements OnInit {
       this.form.markAllAsTouched();
       this.presentAlert();
     }
-    console.log(this.form.value);
+    console.log(this.form.value, this.file);
   }
 
   public addTag() {
