@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
-
+import axios from 'axios';
 @Component({
   selector: 'app-upload-image',
   templateUrl: './upload-image.component.html',
@@ -10,14 +10,20 @@ import { AlertController } from '@ionic/angular';
 export class UploadImageComponent implements OnInit {
   public readonly form = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    description: new FormControl('', [Validators.minLength(1)]),
+    description: new FormControl('', [
+      Validators.required,
+      Validators.minLength(1),
+    ]),
     tag: new FormControl('', [Validators.minLength(1)]),
   });
   public loadImage = false;
   public tags: string[] = [];
   public showButton = true;
-  file;
+  randomColor = ['success', 'warning', 'danger'];
+  color = 'success';
   url = '';
+  enableUploadButton = false;
+  file;
 
   constructor(private alertController: AlertController) {}
 
@@ -34,12 +40,17 @@ export class UploadImageComponent implements OnInit {
       this.form.markAllAsTouched();
       this.presentAlert();
     }
+    if (this.url === '') {
+      return;
+    }
+    this.enableUploadButton = true;
     console.log(this.form.value, this.file);
   }
 
   public addTag() {
     this.tags.push(this.form.value.tag);
-    console.log(this.tags);
+    this.form.get('tag').setValue('');
+    this.color = this.randomColor[Math.floor(Math.random() * 3)];
   }
 
   async presentAlert() {
