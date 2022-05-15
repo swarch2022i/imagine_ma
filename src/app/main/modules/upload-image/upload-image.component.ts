@@ -1,9 +1,10 @@
+import { queries } from './../../../shared/queries';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { environment as env } from './../../../../environments/environment';
-import axios from 'axios';
 import { USER } from '../../models/user.model';
+import axios from 'axios';
 @Component({
   selector: 'app-upload-image',
   templateUrl: './upload-image.component.html',
@@ -39,28 +40,21 @@ export class UploadImageComponent implements OnInit {
   }
 
   public publish() {
-    const query = `
-    query{
-      votesByImageId(imageID: "6255f4604fc97a51fc3ca742") {
-        votes{
-          imageID
-          votes
-        }
-      }
-    }`;
-    axios({
-      url: `${env.baseUrl}${env.graph}`,
-      method: 'get',
-      data: {
-        query,
-      },
-    })
-      .then((result) => {
-        console.log(result.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    //example
+    // axios
+    //   .post(env.baseUrl, {
+    //     query: queries.commentsByImageId,
+    //     variables: {
+    //       imageID: '6255f4604fc97a51fc3ca742',
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
+
     //validation
     if (this.form.invalid) {
       this.form.markAllAsTouched();
