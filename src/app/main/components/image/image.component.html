@@ -1,4 +1,4 @@
-<ion-card>
+<ion-card class="image-card">
   <ion-grid fixed>
     <ion-row class="ion-justify-content-evenly">
       <ion-col class="ion-align-self-center votes" size="2">
@@ -21,9 +21,10 @@
     </ion-row>
   </ion-grid>
   <ion-card-content class="ion-align-items-center" style="padding-top: 0;">
-    <ion-img src="../../../../assets/image_test/test.jpg"></ion-img>
-    <!-- <ion-button id="comments" color="secondary" (click)="openComments()">
+    <img style="border-radius: 2%; margin: auto; display: block; width: 90%;"
+      src="../../../../assets/image_test/test.jpg" alt="Public image" />
+    <ion-text id="comments" color="secondary" [click]="">
       <h6>comments</h6>
-    </ion-button> -->
+    </ion-text>
   </ion-card-content>
 </ion-card>
