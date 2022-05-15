@@ -6,13 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  loadData(event) {
+  loadData(event: { target: { complete: () => void; disabled: boolean; }; }) {
     setTimeout(() => {
-      console.log('Done');
+      console.log(event);
       event.target.complete();
 
       const data = new Array(4);
