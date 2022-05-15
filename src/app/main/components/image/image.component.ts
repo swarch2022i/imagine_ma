@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { } from '@ionic/angular';
 
 @Component({
   selector: 'app-image',
@@ -7,7 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ImageComponent implements OnInit {
   @Input() variable;
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
 }

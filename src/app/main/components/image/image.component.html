@@ -1,24 +1,29 @@
 <ion-card>
   <ion-grid fixed>
-    <ion-row class="ion-justify-content-around">
-      <ion-col class="ion-float-left votes" size="1">
-        <ion-icon class="votes" name="caret-up-circle-outline"></ion-icon>
-        <ion-text class="votes" color="primary">
+    <ion-row class="ion-justify-content-evenly">
+      <ion-col class="ion-align-self-center votes" size="2">
+        <ion-icon class="icon" name="caret-up-circle-outline"></ion-icon>
+        <ion-text class="votes ion-align-self-center" color="primary">
           <p class="votes-number">100k</p>
         </ion-text>
-        <ion-icon class="votes" name="caret-down-circle-outline"></ion-icon>
+        <ion-icon class="icon" name="caret-down-circle-outline"></ion-icon>
       </ion-col>
-      <ion-col size="11">
-        <ion-card-header>
+      <ion-col size="10">
+        <div class="vertical-center">
           <ion-card-title>Image Title</ion-card-title>
-          <ion-text class="" color="dark">
-            <p>Descripcion de la imagen</p>
+          <ion-text color="white">
+            <p style="margin-block-start: 0px; margin-block-end: 10px;">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus velit dignissimos
+            </p>
           </ion-text>
-        </ion-card-header>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-card-content class="ion-align-items-center">
+  <ion-card-content class="ion-align-items-center" style="padding-top: 0;">
     <ion-img src="../../../../assets/image_test/test.jpg"></ion-img>
+    <ion-button id="comments" color="secondary" [click]="openComments()">
+      <h6>comments</h6>
+    </ion-button>
   </ion-card-content>
 </ion-card>
