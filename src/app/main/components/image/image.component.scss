@@ -1,11 +1,29 @@
 .votes {
   display: flex;
   flex-direction: column;
-  font-size: 2rem;
+  font-size: 1.5rem;
 
   .votes-number {
-    margin: 5px 0px;
+    margin: 2px 0px;
     width: 30px;
-    font-size: 12px;
+    font-size: 0.8rem;
   }
+
+  .icon {
+    margin: 0 auto;
+    font-size: 1.8rem;
+    border-radius: 50% !important;
+
+    ion-icon {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.vertical-center {
+  margin: 0;
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
