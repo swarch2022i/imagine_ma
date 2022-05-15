@@ -60,9 +60,10 @@ export class UploadImageComponent implements OnInit {
       commentsId: '',
     };
 
-    //POST
+    const formData = this.getFormData(upload);
+
     axios
-      .post(`${env.baseUrl}${env.portStorage}/${env.endpointStorage}`, upload)
+      .post(`${env.baseUrl}${env.portStorage}/${env.endpointStorage}`, formData)
       .then((response) => {
         console.log(response);
       })
@@ -90,5 +91,11 @@ export class UploadImageComponent implements OnInit {
     await alert.present();
     const { role } = await alert.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
+  }
+
+  getFormData(object) {
+    const formData = new FormData();
+    Object.keys(object).forEach((key) => formData.append(key, object[key]));
+    return formData;
   }
 }
