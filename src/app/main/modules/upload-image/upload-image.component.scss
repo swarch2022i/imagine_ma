@@ -1,0 +1,15 @@
+.col-img {
+  display: flex !important;
+
+  .upload-btn {
+    --background: var(--ion-color-tertiary);
+    width: 350px;
+    height: 350px;
+  }
+}
+
+ion-img {
+  margin: 0px 20px;
+  border-radius: 7px !important;
+  overflow: hidden;
+}
