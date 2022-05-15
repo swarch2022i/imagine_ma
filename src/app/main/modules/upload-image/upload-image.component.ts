@@ -40,21 +40,6 @@ export class UploadImageComponent implements OnInit {
   }
 
   public publish() {
-    //example
-    // axios
-    //   .post(env.baseUrl, {
-    //     query: queries.commentsByImageId,
-    //     variables: {
-    //       imageID: '6255f4604fc97a51fc3ca742',
-    //     },
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-
     //validation
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -71,24 +56,19 @@ export class UploadImageComponent implements OnInit {
       userId: this.user[0].userId,
       name: this.form.value.title,
       description: this.form.value.description,
-      tags: this.tags,
+      tags: '',
       commentsId: '',
     };
 
     //POST
-    // axios
-    //   .post(
-    //     `${env.baseUrl}${env.graph}`,
-    //     upload
-    //   )
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
-    //test graphql
+    axios
+      .post(`${env.baseUrl}${env.portStorage}/${env.endpointStorage}`, upload)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     this.enableUploadButton = true;
     console.log({ upload });
@@ -102,7 +82,8 @@ export class UploadImageComponent implements OnInit {
 
   async presentAlert() {
     const alert = await this.alertController.create({
-      header: 'Please check',
+      cssClass: 'alert-wrapper',
+      header: 'Invalid!',
       message: 'Plase check inputs',
       buttons: ['OK'],
     });
