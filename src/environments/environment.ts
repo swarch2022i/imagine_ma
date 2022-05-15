@@ -4,6 +4,17 @@
 
 export const environment = {
   production: false,
+  baseUrl: 'http://localhost:',
+  portStorage: '1234',
+  portImages: '8080',
+  portCollections: '8000',
+  portNetwork: '3123',
+  portProfile: '80',
+  portWeb: '3000',
+  api: '/api',
+  endpointComment: '/comments',
+  endpointVotes: '/votes',
+  endpointStorage: '/storage/upload',
 };
 
 /*
