@@ -1,13 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { environment as env } from './../../../../environments/environment';
 import axios from 'axios';
+import { USER } from '../../models/user.model';
 @Component({
   selector: 'app-upload-image',
   templateUrl: './upload-image.component.html',
   styleUrls: ['./upload-image.component.scss'],
 })
 export class UploadImageComponent implements OnInit {
+  randomColor = ['success', 'warning', 'danger'];
+  color = 'success';
+  url = '';
+  enableUploadButton = false;
+  file;
   public readonly form = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(1)]),
     description: new FormControl('', [
@@ -19,11 +26,7 @@ export class UploadImageComponent implements OnInit {
   public loadImage = false;
   public tags: string[] = [];
   public showButton = true;
-  randomColor = ['success', 'warning', 'danger'];
-  color = 'success';
-  url = '';
-  enableUploadButton = false;
-  file;
+  private user = USER;
 
   constructor(private alertController: AlertController) {}
 
@@ -36,15 +39,65 @@ export class UploadImageComponent implements OnInit {
   }
 
   public publish() {
+    const query = `
+    query{
+      votesByImageId(imageID: "6255f4604fc97a51fc3ca742") {
+        votes{
+          imageID
+          votes
+        }
+      }
+    }`;
+    axios({
+      url: `${env.baseUrl}${env.graph}`,
+      method: 'get',
+      data: {
+        query,
+      },
+    })
+      .then((result) => {
+        console.log(result.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    //validation
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       this.presentAlert();
+      return;
     }
     if (this.url === '') {
       return;
     }
+
+    //upload Object
+    const upload = {
+      images: this.file,
+      userId: this.user[0].userId,
+      name: this.form.value.title,
+      description: this.form.value.description,
+      tags: this.tags,
+      commentsId: '',
+    };
+
+    //POST
+    // axios
+    //   .post(
+    //     `${env.baseUrl}${env.graph}`,
+    //     upload
+    //   )
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
+    //test graphql
+
     this.enableUploadButton = true;
-    console.log(this.form.value, this.file);
+    console.log({ upload });
   }
 
   public addTag() {
@@ -55,8 +108,8 @@ export class UploadImageComponent implements OnInit {
 
   async presentAlert() {
     const alert = await this.alertController.create({
-      header: 'Title',
-      message: 'Plase write a title',
+      header: 'Please check',
+      message: 'Plase check inputs',
       buttons: ['OK'],
     });
     await alert.present();
