@@ -1,4 +1,4 @@
-import { queries } from './../../../shared/queries';
+import { queries } from '../../../shared/queries';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
@@ -29,9 +29,9 @@ export class UploadImageComponent implements OnInit {
   public showButton = true;
   private user = USER;
 
-  constructor(private alertController: AlertController) {}
+  constructor(private alertController: AlertController) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public uploadImageFromGallery(e): void {
     this.file = e.target.files[0];

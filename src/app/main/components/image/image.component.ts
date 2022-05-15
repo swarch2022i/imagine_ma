@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {} from '@ionic/angular';
+import { } from '@ionic/angular';
 
 @Component({
   selector: 'app-image',
@@ -8,11 +8,15 @@ import {} from '@ionic/angular';
 })
 export class ImageComponent implements OnInit {
   @Input() variable;
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   openComments() {
     console.log('as');
+  }
+
+  onClick() {
+    console.log('Click on comment');
   }
 }
