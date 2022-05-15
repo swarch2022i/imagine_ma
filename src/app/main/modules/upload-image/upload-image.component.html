@@ -1,17 +1,23 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title size="large">Upload Image</ion-title>
+    <ion-title class="ion-text-center" size="large">Upload Image</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-img *ngIf="loadImage" src="../../../../assets/image_test/test.jpg"></ion-img>
-  <ion-button expand="full" (click)="uploadImageFromGallery()">
-    <ion-icon slot="start" name="arrow-up-outline"></ion-icon>
-    Upload
-  </ion-button>
+  <ion-img class="ion-vertical-margin" *ngIf="url" [src]="url"></ion-img>
+  <input style="display: none" type="file" accept=".png, .jpg, .jpeg, .gif" (change)="uploadImageFromGallery($event)"
+    #photoInput />
+  <ion-row>
+    <ion-col class="ion-justify-content-center col-img" size="12">
+      <ion-button *ngIf="showButton" (click)="(photoInput.click)" class="upload-btn" (click)="photoInput.click()">
+        <ion-icon slot="start" name="arrow-up-outline"></ion-icon>
+        Upload
+      </ion-button>
+    </ion-col>
+  </ion-row>
   <ion-list [formGroup]="form">
     <ion-item>
-      <ion-label position="floating">Title</ion-label>
+      <ion-label position="floating" color="primary">Title</ion-label>
       <ion-input formControlName="title"></ion-input>
     </ion-item>
     <ion-item>
@@ -22,11 +28,15 @@
       <ion-label position="floating">Add Tag</ion-label>
       <ion-input formControlName="tag" (keyup.enter)="addTag()"></ion-input>
     </ion-item>
-    <ion-chip *ngFor="let tag of tags" color="secondary">
-      <ion-label color="dark">{{tag}}</ion-label>
+    <ion-chip *ngFor="let tag of tags" outline color="secondary">
+      <ion-label [color]="color">{{tag}}</ion-label>
     </ion-chip>
   </ion-list>
-  <ion-button (click)="publish()" expand="block" fill="clear" shape="round">
-    Publish
-  </ion-button>
+  <ion-row>
+    <ion-col class="ion-justify-content-center col-img" size="12">
+      <ion-button (click)="publish()" shape="round">
+        Publish
+      </ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>
