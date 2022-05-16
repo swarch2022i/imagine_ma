@@ -17,6 +17,24 @@ export const queries = {
     }
   }
 `,
+  allImageStorage: `query{
+  allImageStorage{
+    url
+  }
+}
+`,
+  allImages: `query{
+  allImages{
+    id
+    name
+    description
+    tags
+    ownerId
+    commentsId
+    imageStorageId
+    url
+  }
+}`,
 };
 
 //example
