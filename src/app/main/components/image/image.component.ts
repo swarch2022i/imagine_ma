@@ -1,3 +1,4 @@
+import { Image } from './../../interfaces/image.interface';
 import { Component, Input, OnInit } from '@angular/core';
 import {} from '@ionic/angular';
 
@@ -7,7 +8,7 @@ import {} from '@ionic/angular';
   styleUrls: ['./image.component.scss'],
 })
 export class ImageComponent implements OnInit {
-  @Input() variable;
+  @Input() image: Image;
   constructor() {}
 
   ngOnInit() {}

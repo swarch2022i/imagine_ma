@@ -1,4 +1,3 @@
-import { queries } from './../../../shared/queries';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, LoadingController } from '@ionic/angular';

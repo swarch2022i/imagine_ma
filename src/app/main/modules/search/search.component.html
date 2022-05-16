@@ -1,3 +1,8 @@
+<ion-header>
+  <ion-searchbar color="tertiary" placeholder="Search image" (ionChange)="onSearchChange($event)" [debounce]="1000">
+  </ion-searchbar>
+</ion-header>
 <ion-content>
-  <ion-searchbar placeholder="Search image" (ionChange)="onSearchChange($event)" [debounce]="250"></ion-searchbar>
+  <app-image *ngFor="let img of images" [image]="img"></app-image>
+
 </ion-content>

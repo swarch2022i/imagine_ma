@@ -10,10 +10,10 @@
       </ion-col>
       <ion-col size="10">
         <div class="vertical-center">
-          <ion-card-title>Image Title</ion-card-title>
+          <ion-card-title>{{image.name}}</ion-card-title>
           <ion-text color="white">
             <p style="margin-block-start: 0px; margin-block-end: 10px;">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus velit dignissimos
+              {{image.description}}
             </p>
           </ion-text>
         </div>
@@ -21,8 +21,7 @@
     </ion-row>
   </ion-grid>
   <ion-card-content class="ion-align-items-center" style="padding-top: 0;">
-    <img style="border-radius: 2%; margin: auto; display: block; width: 90%;"
-      src="../../../../assets/image_test/test.jpg" alt="Public image" />
+    <img style="border-radius: 2%; margin: auto; display: block; width: 90%;" [src]="image.url" alt="Public image" />
     <ion-text id="comments" color="secondary" [click]="">
       <h6>comments</h6>
     </ion-text>

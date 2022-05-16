@@ -17,6 +17,14 @@ export const queries = {
     }
   }
 `,
+  imageByTag: `query($tag : String!){
+  imageByTag(tag : $tag){
+    name
+    description
+    commentsId
+    url
+  }
+}`,
   allImageStorage: `query{
   allImageStorage{
     url
