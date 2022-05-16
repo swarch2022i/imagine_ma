@@ -17,4 +17,37 @@ export const queries = {
     }
   }
 `,
+  allImageStorage: `query{
+  allImageStorage{
+    url
+  }
+}
+`,
+  allImages: `query{
+  allImages{
+    id
+    name
+    description
+    tags
+    ownerId
+    commentsId
+    imageStorageId
+    url
+  }
+}`,
 };
+
+//example
+// axios
+//   .post(env.baseUrl, {
+//     query: queries.commentsByImageId,
+//     variables: {
+//       imageID: '6255f4604fc97a51fc3ca742',
+//     },
+//   })
+//   .then((res) => {
+//     console.log(res.data.data);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });

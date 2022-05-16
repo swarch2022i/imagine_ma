@@ -1,10 +1,11 @@
 import { queries } from '../../../shared/queries';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { environment as env } from './../../../../environments/environment';
 import { USER } from '../../models/user.model';
 import axios from 'axios';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-upload-image',
   templateUrl: './upload-image.component.html',
@@ -12,8 +13,6 @@ import axios from 'axios';
 })
 export class UploadImageComponent implements OnInit {
   randomColor = ['success', 'warning', 'danger'];
-  color = 'success';
-  url = '';
   enableUploadButton = false;
   file;
   public readonly form = new FormGroup({
@@ -24,14 +23,20 @@ export class UploadImageComponent implements OnInit {
     ]),
     tag: new FormControl('', [Validators.minLength(1)]),
   });
+  public url = '';
+  public color = 'success';
   public loadImage = false;
   public tags: string[] = [];
   public showButton = true;
   private user = USER;
 
-  constructor(private alertController: AlertController) { }
+  constructor(
+    private alertController: AlertController,
+    private loadingController: LoadingController,
+    private router: Router
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   public uploadImageFromGallery(e): void {
     this.file = e.target.files[0];
@@ -40,28 +45,14 @@ export class UploadImageComponent implements OnInit {
   }
 
   public publish() {
-    //example
-    // axios
-    //   .post(env.baseUrl, {
-    //     query: queries.commentsByImageId,
-    //     variables: {
-    //       imageID: '6255f4604fc97a51fc3ca742',
-    //     },
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-
     //validation
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      this.presentAlert();
+      this.presentAlert('please check inputs');
       return;
     }
     if (this.url === '') {
+      this.presentAlert('please select an Image');
       return;
     }
 
@@ -71,27 +62,32 @@ export class UploadImageComponent implements OnInit {
       userId: this.user[0].userId,
       name: this.form.value.title,
       description: this.form.value.description,
-      tags: this.tags,
       commentsId: '',
     };
 
-    //POST
-    // axios
-    //   .post(
-    //     `${env.baseUrl}${env.graph}`,
-    //     upload
-    //   )
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    const formData = this.getFormData(upload);
+    for (const i of this.tags) {
+      formData.append('tags[]', i);
+    }
 
-    //test graphql
+    this.presentLoading();
+    axios
+      .post(`${env.baseUrl}${env.portStorage}/${env.endpointStorage}`, formData)
+      .then((response) => {
+        this.router.navigate(['/home']);
+        this.form.reset();
+        this.tags = [];
+        this.url = '';
+        this.loadImage = false;
+        this.showButton = true;
+        console.log(response);
+      })
+      .catch((error) => {
+        this.presentAlert(error.message);
+        console.log(error);
+      });
 
     this.enableUploadButton = true;
-    console.log({ upload });
   }
 
   public addTag() {
@@ -100,14 +96,32 @@ export class UploadImageComponent implements OnInit {
     this.color = this.randomColor[Math.floor(Math.random() * 3)];
   }
 
-  async presentAlert() {
+  async presentAlert(msg: string) {
     const alert = await this.alertController.create({
-      header: 'Please check',
-      message: 'Plase check inputs',
+      cssClass: 'alert-wrapper',
+      header: 'Invalid!',
+      message: msg,
       buttons: ['OK'],
     });
     await alert.present();
     const { role } = await alert.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+      duration: 3000,
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
+  }
+
+  private getFormData(object) {
+    const formData = new FormData();
+    Object.keys(object).forEach((key) => formData.append(key, object[key]));
+    return formData;
   }
 }
