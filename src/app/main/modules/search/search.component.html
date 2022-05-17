@@ -3,6 +3,26 @@
   </ion-searchbar>
 </ion-header>
 <ion-content>
-  <app-image *ngFor="let img of images" [image]="img"></app-image>
+  <div *ngIf="!showEmptyList; else showEmpty">
+    <app-image *ngFor="let img of images" [image]="img"></app-image>
+  </div>
+  <ng-template #showEmpty>
+    <ion-card color="transparent">
+      <ion-card-content>
+        <ion-row class="ion-justify-content-center ion-margin-vertical">
+          <ion-icon class="alert" name="alert-circle-outline" color="danger">
+          </ion-icon>
+        </ion-row>
+        <ion-row class="ion-justify-content-center ion-margin-vertical">
+          <ion-text class="ion-text-center" color="light">
+            <h1>Not Found</h1>
+          </ion-text>
+        </ion-row>
+        <ion-row class="ion-justify-content-center ion-margin-vertical">
+          <ion-img src="../../../../assets/image_test/travolta.gif"></ion-img>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
 
 </ion-content>

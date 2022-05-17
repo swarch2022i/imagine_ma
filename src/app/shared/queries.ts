@@ -25,6 +25,15 @@ export const queries = {
     url
   }
 }`,
+  imageByName: `query($name : String!){
+  imageByName(name: $name){
+    name
+    description
+    commentsId
+    url
+  }
+}
+`,
   allImageStorage: `query{
   allImageStorage{
     url

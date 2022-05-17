@@ -3,7 +3,7 @@
     <ion-row class="ion-justify-content-evenly">
       <ion-col class="ion-align-self-center votes" size="2">
         <ion-icon class="icon" name="caret-up-circle-outline"></ion-icon>
-        <ion-text class="votes ion-align-self-center" color="primary">
+        <ion-text class="votes ion-align-self-center" color="light">
           <p class="votes-number">100k</p>
         </ion-text>
         <ion-icon class="icon" name="caret-down-circle-outline"></ion-icon>
@@ -22,7 +22,7 @@
   </ion-grid>
   <ion-card-content class="ion-align-items-center" style="padding-top: 0;">
     <img style="border-radius: 2%; margin: auto; display: block; width: 90%;" [src]="image.url" alt="Public image" />
-    <ion-text id="comments" color="secondary" [click]="">
+    <ion-text id="comments" color="secondary" (click)="openComments()">
       <h6>comments</h6>
     </ion-text>
   </ion-card-content>

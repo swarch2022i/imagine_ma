@@ -1,3 +1,4 @@
+import { AlertController } from '@ionic/angular';
 import { Image } from './../../interfaces/image.interface';
 import { queries } from './../../../shared/queries';
 import { Component, OnInit } from '@angular/core';
@@ -11,11 +12,13 @@ import { environment as env } from './../../../../environments/environment';
 })
 export class SearchComponent implements OnInit {
   public images: Image[] = [];
-  constructor() {}
+  public showEmptyList = false;
+  constructor(private alertController: AlertController) {}
 
   ngOnInit() {}
 
   public onSearchChange(event) {
+    this.showEmptyList = false;
     const value = event.detail.value;
 
     if (value === '') {
@@ -24,8 +27,6 @@ export class SearchComponent implements OnInit {
 
     //tag ---> #
     if (value.includes('#')) {
-      console.log(`${env.baseUrl}${env.graphPort}/${env.graph}`);
-      console.log('is tag');
       axios
         .post(`${env.baseUrl}${env.graphPort}/${env.graph}`, {
           query: queries.imageByTag,
@@ -35,18 +36,39 @@ export class SearchComponent implements OnInit {
         })
         .then((res) => {
           this.images = res.data.data.imageByTag;
-          console.log(res.data.data.imageByTag);
         })
         .catch((error) => {
+          this.showEmptyList = true;
           console.error(error);
         });
+      return;
     }
 
     //user ---> @
     if (value.includes('@')) {
       console.log('is user');
+      return;
     }
 
-    console.log(event.detail.value);
+    //search by name
+    axios
+      .post(`${env.baseUrl}${env.graphPort}/${env.graph}`, {
+        query: queries.imageByName,
+        variables: {
+          name: value,
+        },
+      })
+      .then((res) => {
+        if (res.data.data) {
+          this.images = res.data.data.imageByName;
+        } else {
+          this.showEmptyList = true;
+        }
+      })
+      .catch((error) => {
+        this.showEmptyList = true;
+        console.error(error);
+      });
+    return;
   }
 }
