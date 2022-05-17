@@ -16,4 +16,8 @@ export class ImageComponent implements OnInit {
   openComments() {
     console.log('as');
   }
+
+  onClick() {
+    console.log('Click on comment');
+  }
 }
