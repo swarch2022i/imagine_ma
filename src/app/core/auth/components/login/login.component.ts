@@ -1,5 +1,21 @@
+/* eslint-disable @typescript-eslint/dot-notation */
+/* eslint-disable @typescript-eslint/quotes */
+
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserAuth } from '../../userAuth';
+import { Apollo, gql } from 'apollo-angular';
+import { Storage } from '@ionic/storage-angular';
+
+const loginAuth = gql`
+mutation login($login: LoginInput!){
+  login(login:$login){
+    id,
+    username,
+    token
+  }
+}
+`;
 
 @Component({
   selector: 'app-login',
@@ -7,20 +23,42 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  public readonly form = new FormGroup({
-    username: new FormControl('', [
-      Validators.minLength(1),
-      Validators.maxLength(5),
-      Validators.min(50),
-      Validators.max(150),
-    ]),
-  });
 
-  constructor() {}
+  loginForm!: FormGroup;
+  userAuth: UserAuth;
 
-  ngOnInit() {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private apollo: Apollo,
+    private storage: Storage
+  ) {}
+
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
+    });
+  }
+
+  login(){
+    this.apollo.mutate({
+      mutation:loginAuth,
+      variables:{
+        login:{
+          username:this.loginForm.controls["username"].value,
+          password:this.loginForm.controls["password"].value
+        }
+      }
+    }).subscribe(({data})=>{
+      this.storage.set('token', data['login']['token']);
+      this.storage.get('token').then((val) => {
+        console.log('token:', val);
+      });
+    },(error)=>{
+      console.log('error sending query', error);
+    });
+  }
 
   test() {
-    console.log(this.form.value);
   }
 }

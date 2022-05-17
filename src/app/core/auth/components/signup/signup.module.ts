@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { SignupComponent } from './signup.component';
 import { SignupPageRoutingModule } from './signup-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -14,7 +15,8 @@ import { SignupPageRoutingModule } from './signup-routing.module';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    SignupPageRoutingModule
+    SignupPageRoutingModule,
+    HttpClientModule
   ]
 })
 export class SignupModule { }

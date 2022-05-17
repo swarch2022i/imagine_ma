@@ -1,8 +1,28 @@
 <ion-content>
-  <ion-list [formGroup]="form">
-    <ion-input formControlName="username" type="text"> </ion-input>
-  </ion-list>
-  <ion-button (click)="test()">
-    <ion-icon slot="icon-only" name="add"></ion-icon>
-  </ion-button>
+  <form [formGroup]="loginForm" (ngSubmit)="!loginForm.invalid && login()">
+    <ion-item class="form-goup">
+      <ion-label for="username">Username</ion-label>
+      <ion-input novalidate
+        id="username"
+        class="form_control"
+        formControlName="username"
+        placeholder="pepe.rodriguez"></ion-input>
+      <ion-item class="alert alert-danger alert-dismissible fade show" *ngIf="loginForm.get('username')!.hasError('required') &&loginForm.get('username')!.touched">
+        username required
+      </ion-item>
+    </ion-item>
+    <ion-item class="form-goup">
+      <ion-label for="password">password</ion-label>
+      <ion-input novalidate
+        id="password"
+        class="form_control"
+        formControlName="password"
+        placeholder="pepe.rodriguez"></ion-input>
+      <ion-item class="alert alert-danger alert-dismissible fade show" *ngIf="loginForm.get('password')!.hasError('required') &&loginForm.get('password')!.touched">
+        password required
+      </ion-item>
+    </ion-item>
+    <ion-button type="submit" class="btn btn-prymary" [disabled]="!loginForm.valid">Login</ion-button>
+    <ion-button type="button" class="btn btn-danger" routerLink="/auth/signup">SignUp</ion-button>
+  </form>
 </ion-content>
