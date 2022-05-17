@@ -9,8 +9,7 @@
   <ion-grid fixed>
     <ion-row class="ion-wrap ion-justify-content-left">
       <ion-col size="4" *ngFor="let image of array">
-        <img [ngClass]="{show: selected}" src="../../../../assets/image_test/room.jpg" alt="Image preview"
-          (click)="test($event, image)" />
+        <img src="../../../../assets/image_test/room.jpg" alt="Image preview" (click)="test($event, image)" />
       </ion-col>
     </ion-row>
   </ion-grid>

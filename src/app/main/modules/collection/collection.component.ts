@@ -1,4 +1,4 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
@@ -11,6 +11,13 @@ export class CollectionComponent implements OnInit {
 
   selected = false;
   array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,];
+
+
+  constructor(
+    private render: Renderer2,
+  ) { }
+
+  ngOnInit() { }
 
   public readonly collection = new FormGroup({
     title: new FormControl('', [
@@ -27,13 +34,13 @@ export class CollectionComponent implements OnInit {
     ]),
   });
 
-  constructor() { }
-
-  ngOnInit() { }
-
   test(event: any, index: any) {
-    console.log(event, index);
-    this.selected = !this.selected;
+    const hasClass = event.target.classList.contains('show');
+    if (hasClass) {
+      this.render.removeClass(event.target, 'show');;
+    } else {
+      this.render.addClass(event.target, 'show');
+    }
   }
 
   send() {
