@@ -1,0 +1,34 @@
+<ion-header translucent>
+  <ion-toolbar class="toolbar-empty ">
+    <ion-label>Coments</ion-label>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Awesome Label</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Awesome Label</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Awesome Label</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Awesome Label</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Awesome Label</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll threshold="20%" [disabled]="false" position="bottom" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading coments...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+<ion-item class="item-test ion-no-padding">
+  <ion-input placeholder="Coment..." mode="ios"></ion-input>
+  <ion-button (click)="onClick()">
+    <ion-icon name="paper-plane-outline"></ion-icon>
+  </ion-button>
+</ion-item>

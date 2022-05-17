@@ -8,4 +8,4 @@ import { ImageComponent } from './image.component';
   imports: [CommonModule, IonicModule],
   exports: [ImageComponent],
 })
-export class ImageModule {}
+export class ImageModule { }

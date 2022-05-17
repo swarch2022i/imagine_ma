@@ -7,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CollectionComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    // TODO document why this constructor is empty
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // TODO document why this method 'ngOnInit' is empty
+  }
 
 }
