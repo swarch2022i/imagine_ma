@@ -11,7 +11,7 @@
 	--padding-end: 10px;
 }
 
-.item-test {
+.input-coment {
 	--background: var(--ion-color-primary-tint);
 	--border-color: var(--ion-color-primary);
 	--border-radius: 8px;
@@ -25,4 +25,25 @@
 	--transition: background-color 15ms linear;
 	--inner-padding-start: 20px;
 	margin: 8px;
+
+	.send-button {
+		--background: var(--ion-color-primary-tint);
+		--background-hover: #3880ff;
+		--background-hover-opacity: 0.8;
+		--color: #ffffff;
+		--color-activated: #ffffff;
+		--color-focused: #ffffff;
+		--color-hover: #ffffff;
+		--transition: background-color 15ms linear;
+	}
+}
+
+
+ion-content {
+	--background: var(--ion-color-primary-shade);
+
+	.list-item {
+		--background: var(--ion-color-primary-tint);
+		--border-radius: 8px;
+	}
 }
