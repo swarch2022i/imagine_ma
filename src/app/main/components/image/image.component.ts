@@ -1,5 +1,6 @@
+import { Image } from './../../interfaces/image.interface';
 import { Component, Input, OnInit } from '@angular/core';
-import { } from '@ionic/angular';
+import {} from '@ionic/angular';
 
 @Component({
   selector: 'app-image',
@@ -7,10 +8,10 @@ import { } from '@ionic/angular';
   styleUrls: ['./image.component.scss'],
 })
 export class ImageComponent implements OnInit {
-  @Input() variable;
-  constructor() { }
+  @Input() image: Image;
+  constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   openComments() {
     console.log('as');

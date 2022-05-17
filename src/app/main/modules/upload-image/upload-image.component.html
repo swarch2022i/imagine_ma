@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="transparent" class="ion-margin-vertical">
     <ion-title class="ion-text-center" size="large">Upload Image</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,24 +9,32 @@
     #photoInput />
   <ion-row>
     <ion-col class="ion-justify-content-center col-img" size="12">
-      <ion-button *ngIf="showButton" (click)="(photoInput.click)" class="upload-btn" (click)="photoInput.click()">
+      <ion-button *ngIf="showButton; else showMiniButton" (click)="(photoInput.click)" class="upload-btn"
+        (click)="photoInput.click()">
         <ion-icon slot="start" name="arrow-up-outline"></ion-icon>
         Upload
       </ion-button>
+      <ng-template #showMiniButton>
+        <ion-button (click)="(photoInput.click)" (click)="photoInput.click()">
+          <ion-icon slot="start" name="arrow-up-outline"></ion-icon>
+          reUpload
+        </ion-button>
+      </ng-template>
     </ion-col>
   </ion-row>
   <ion-list [formGroup]="form">
     <ion-item>
-      <ion-label position="floating" color="primary">Title</ion-label>
+      <ion-label position="floating" color="ligth">Title</ion-label>
       <ion-input formControlName="title"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Description</ion-label>
+      <ion-label position="floating" color="ligth">Description</ion-label>
       <ion-input formControlName="description"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Add Tag</ion-label>
+      <ion-label position="floating" color="ligth">Add Tag</ion-label>
       <ion-input formControlName="tag" (keyup.enter)="addTag()"></ion-input>
+
     </ion-item>
     <ion-chip *ngFor="let tag of tags" outline color="secondary">
       <ion-label [color]="color">{{tag}}</ion-label>
@@ -34,7 +42,7 @@
   </ion-list>
   <ion-row>
     <ion-col class="ion-justify-content-center col-img" size="12">
-      <ion-button (click)="publish()" shape="round">
+      <ion-button (click)="publish()" shape="round" color="secondary">
         Publish
       </ion-button>
     </ion-col>

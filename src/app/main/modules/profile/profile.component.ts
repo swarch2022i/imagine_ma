@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IMAGE_MODEL } from '../../models/image.model';
 
 @Component({
   selector: 'app-profile',
@@ -6,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  constructor() { }
+  temp = IMAGE_MODEL[0];
+  constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
-  loadData(event: { target: { complete: () => void; disabled: boolean; }; }) {
+  loadData(event: { target: { complete: () => void; disabled: boolean } }) {
     setTimeout(() => {
       console.log(event);
       event.target.complete();
