@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-collection',
@@ -8,7 +9,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class CollectionComponent implements OnInit {
 
-  array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  selected = false;
+  array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,];
 
   public readonly collection = new FormGroup({
     title: new FormControl('', [
@@ -21,6 +23,7 @@ export class CollectionComponent implements OnInit {
     ]),
     images_ids: new FormControl([], [
       Validators.required,
+      Validators.nullValidator,
     ]),
   });
 
@@ -28,15 +31,16 @@ export class CollectionComponent implements OnInit {
 
   ngOnInit() { }
 
-  test(url) {
-    console.log(url)
+  test(event: any, index: any) {
+    console.log(event, index);
+    this.selected = !this.selected;
   }
 
   send() {
     console.log(this.collection.value);
   }
 
-  loadData(event) {
+  loadData(event: any) {
     console.log(event);
   }
 
