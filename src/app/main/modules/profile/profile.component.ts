@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IonRouterOutlet } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -6,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  constructor() { }
 
-  ngOnInit() { }
+  constructor(
+    // TODO preguntar Johan por que no funciona public routerOutlet: IonRouterOutlet,
+  ) { }
+
+  ngOnInit() {
+    /* TODO document why this method 'ngOnInit' is empty */
+  }
 
   loadData(event: { target: { complete: () => void; disabled: boolean; }; }) {
     setTimeout(() => {

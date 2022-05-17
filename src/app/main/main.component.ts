@@ -7,11 +7,11 @@ import { APP_PAGES } from './models/pages.models';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-  pages = APP_PAGES;
-  constructor() {}
 
-  ngOnInit() {}
-  onClick() {
-    console.log('hola');
-  }
+  pages = APP_PAGES;
+
+  constructor() { }
+
+  ngOnInit() { }
+
 }
