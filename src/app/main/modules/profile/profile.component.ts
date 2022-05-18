@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IMAGE_MODEL, } from "../../models/image.model";
-import { Image, Collection } from "../../interfaces/image.interface";
-import { PROFILE_PAGES } from "./models/page.model";
+import { PROFILE_MODEL } from '../../models/image.model';
+import { PROFILE_PAGES } from './models/page.model';
+import { Profile } from '../../interfaces/image.interface';
 
 @Component({
   selector: 'app-profile',
@@ -9,14 +9,15 @@ import { PROFILE_PAGES } from "./models/page.model";
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  public pages = PROFILE_PAGES;
 
-  public pages = PROFILE_PAGES[0];
+  profile: Profile = PROFILE_MODEL[0];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
-  loadData(event: { target: { complete: () => void; disabled: boolean; }; }) {
+  loadData(event: { target: { complete: () => void; disabled: boolean } }) {
     setTimeout(() => {
       console.log(event);
       event.target.complete();

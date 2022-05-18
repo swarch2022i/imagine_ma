@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IMAGE_MODEL, } from "../../../../models/image.model";
+import { IMAGE_MODEL } from '../../../../models/image.model';
 
 @Component({
   selector: 'app-user-images',
@@ -7,15 +7,13 @@ import { IMAGE_MODEL, } from "../../../../models/image.model";
   styleUrls: ['./user-images.component.scss'],
 })
 export class UserImagesComponent implements OnInit {
-
   public images = IMAGE_MODEL;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   loadData(e) {
-    console.log("load more images")
+    console.log('load more images');
   }
-
 }
