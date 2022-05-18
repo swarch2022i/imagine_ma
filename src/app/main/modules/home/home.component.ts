@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   constructor() {}
 
   async ngOnInit() {
+    this.showImages = false;
     axios
       .post(`${env.baseUrl}${env.graphPort}/${env.graph}`, {
         query: queries.allImages,
