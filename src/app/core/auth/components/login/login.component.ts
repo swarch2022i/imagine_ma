@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -15,12 +16,12 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
-  flag: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public toastController: ToastController
   ) {}
 
   ngOnInit() {
@@ -38,8 +39,11 @@ export class LoginComponent implements OnInit {
       ).subscribe(({data})=>{
         localStorage.setItem('ACCESS_TOKEN', data['login']['token']);
         localStorage.setItem('ID_USER', data['login']['id']);
+        this.router.navigateByUrl('/home');
+        this.toastSuccess('Login success.');
       },(error)=>{
         console.log('error sending query', error);
+        this.toastError('Username or paswword incorrect.');
       });;
   }
 
@@ -57,16 +61,37 @@ export class LoginComponent implements OnInit {
       }, (error)=>{
         //que hacer cuando no esta logeado
         console.log('nologeado');
-        this.flag=false;
       });
 
     }else{
       //que hacer cuando no esta logeado
       console.log('no logeado');
-      this.flag=false;
     }
   }
 
-  test() {
+  async toastError(msg: string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+      color: 'danger',
+      icon: 'ban',
+      translucent: false,
+      cssClass: 'ion-text-center',
+    });
+    toast.present();
+  }
+
+
+
+  async toastSuccess(msg: string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+      color: 'success',
+      icon: 'checkbox-outline',
+      translucent: false,
+      cssClass: 'ion-text-center',
+    });
+    toast.present();
   }
 }
