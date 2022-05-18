@@ -4,6 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
+import { HttpClientModule } from '@angular/common/http';
+
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -12,7 +15,9 @@ import { LoginComponent } from './login.component';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    LoginPageRoutingModule
+    LoginPageRoutingModule,
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ]
 })
 export class LoginModule {}

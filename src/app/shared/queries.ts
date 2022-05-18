@@ -52,6 +52,16 @@ export const queries = {
     url
   }
 }`,
+
+  signup: `mutation{
+    createUserAUTH(user:{
+      username: $username,
+      password: $password
+    }){
+      id,
+      username
+    }
+  }`
 };
 
 //example
