@@ -3,19 +3,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserAuth } from '../../userAuth';
-import { Apollo, gql } from 'apollo-angular';
-import { Storage } from '@ionic/storage-angular';
+import { AuthService } from '../../auth.service';
 
-const loginAuth = gql`
-mutation login($login: LoginInput!){
-  login(login:$login){
-    id,
-    username,
-    token
-  }
-}
-`;
 
 @Component({
   selector: 'app-login',
@@ -25,12 +14,10 @@ mutation login($login: LoginInput!){
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
-  userAuth: UserAuth;
 
   constructor(
     private formBuilder: FormBuilder,
-    private apollo: Apollo,
-    private storage: Storage
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -41,22 +28,27 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.apollo.mutate({
-      mutation:loginAuth,
-      variables:{
-        login:{
-          username:this.loginForm.controls["username"].value,
-          password:this.loginForm.controls["password"].value
-        }
-      }
-    }).subscribe(({data})=>{
-      this.storage.set('token', data['login']['token']);
-      this.storage.get('token').then((val) => {
-        console.log('token:', val);
-      });
-    },(error)=>{
-      console.log('error sending query', error);
-    });
+    this.authService.login(
+      this.loginForm.controls["username"].value,
+      this.loginForm.controls["password"].value
+      ).subscribe(({data})=>{
+        this.authService.set('ACCESS_TOKEN', data['login']['token']);
+        this.authService.set('ID_USER', data['login']['id']);
+        this.authService.get('ACCESS_TOKEN').then((val) => {
+          console.log('ACCESS_TOKEN:', val);
+        });
+      },(error)=>{
+        console.log('error sending query', error);
+      });;
+  }
+
+  signout(){
+    this.authService.signout();
+  }
+
+  async testIsogin(){
+    const result = await this.authService.isLogin();
+    console.log('result',result);
   }
 
   test() {

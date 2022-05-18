@@ -1,5 +1,6 @@
-<ion-content>
-  <form [formGroup]="loginForm" (ngSubmit)="!loginForm.invalid && login()">
+<ion-grid class="ion-margin-top ion-no-margin">
+  <h3 class="ion-margin ion-text-center">Login</h3>
+  <form class="ion-margin-vertical" [formGroup]="loginForm" (ngSubmit)="!loginForm.invalid && login()">
     <ion-item class="form-goup">
       <ion-label for="username">Username</ion-label>
       <ion-input novalidate
@@ -7,7 +8,7 @@
         class="form_control"
         formControlName="username"
         placeholder="pepe.rodriguez"></ion-input>
-      <ion-item class="alert alert-danger alert-dismissible fade show" *ngIf="loginForm.get('username')!.hasError('required') &&loginForm.get('username')!.touched">
+      <ion-item class="alertVerification alert alert-danger alert-dismissible fade show" *ngIf="loginForm.get('username')!.hasError('required') &&loginForm.get('username')!.touched">
         username required
       </ion-item>
     </ion-item>
@@ -16,13 +17,16 @@
       <ion-input novalidate
         id="password"
         class="form_control"
+        type="password"
         formControlName="password"
-        placeholder="pepe.rodriguez"></ion-input>
-      <ion-item class="alert alert-danger alert-dismissible fade show" *ngIf="loginForm.get('password')!.hasError('required') &&loginForm.get('password')!.touched">
+        placeholder="******"></ion-input>
+      <ion-item  class="alertVerification alert alert-danger alert-dismissible fade show" *ngIf="loginForm.get('password')!.hasError('required') &&loginForm.get('password')!.touched">
         password required
       </ion-item>
     </ion-item>
-    <ion-button type="submit" class="btn btn-prymary" [disabled]="!loginForm.valid">Login</ion-button>
-    <ion-button type="button" class="btn btn-danger" routerLink="/auth/signup">SignUp</ion-button>
+    <ion-row class="ion-justify-content-center ion-margin-vertical">
+      <ion-button type="submit" color="light" class="ion-margin-horizontal" [disabled]="!loginForm.valid">Login</ion-button>
+      <ion-button type="button" color="dark" class="ion-margin-horizontal" routerLink="/auth/signup">SignUp</ion-button>
+    </ion-row>
   </form>
-</ion-content>
+</ion-grid>
