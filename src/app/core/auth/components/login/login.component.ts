@@ -7,6 +7,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+
+
   public readonly form = new FormGroup({
     username: new FormControl('', [
       Validators.minLength(1),
@@ -16,11 +18,13 @@ export class LoginComponent implements OnInit {
     ]),
   });
 
-  constructor() {}
 
-  ngOnInit() {}
+  constructor() { }
+
+  ngOnInit() { }
 
   test() {
     console.log(this.form.value);
   }
+
 }

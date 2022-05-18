@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IMAGE_MODEL } from '../../models/image.model';
+import { PROFILE_PAGES } from "./models/page.model";
 
 @Component({
   selector: 'app-profile',
@@ -7,10 +7,12 @@ import { IMAGE_MODEL } from '../../models/image.model';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  temp = IMAGE_MODEL[0];
-  constructor() {}
 
-  ngOnInit() {}
+  public pages = PROFILE_PAGES;
+
+  constructor() { }
+
+  ngOnInit() { }
 
   loadData(event: { target: { complete: () => void; disabled: boolean } }) {
     setTimeout(() => {

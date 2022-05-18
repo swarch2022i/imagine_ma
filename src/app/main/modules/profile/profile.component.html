@@ -1,49 +1,47 @@
-<ion-content>
+<ion-header>
   <ion-list>
-    <ion-grid class="ion-no-border no-margin-top" fixed>
-      <ion-row class="ion-align-items-center" class="ion-wrap">
-        <ion-col size="12">
-          <ion-avatar style="margin: 0 auto;">
-            <img src="../../../../assets/image_test/avatar.png" alt="Profile image" />
-          </ion-avatar>
-        </ion-col>
-        <ion-col size="12">
-          <ion-text class="ion-text-center" color="light-shade">
-            <h1 class="no-margin-top no-margin-bottom">Awesome Name</h1>
-          </ion-text>
-        </ion-col>
-        <ion-col>
-          <ion-text class="ion-text-center" color="medium">
-            <p class="no-margin-top" style="margin-bottom: 5px;">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, similique!
-            </p>
-          </ion-text>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-text-center ion-justify-content-evenly">
-        <ion-col class="ion-no-padding" size="4">
-          <ion-text color="light-tint">
-            <h3 class="ion-no-margin">Follwing</h3>
-          </ion-text>
-          <ion-badge color="secondary" mode="ios">100</ion-badge>
-        </ion-col>
-        <ion-col class="ion-no-padding" size="4">
-          <ion-text color="light-tint">
-            <h3 class="ion-no-margin">Followers</h3>
-          </ion-text>
-          <ion-badge color="secondary" mode="ios">100</ion-badge>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <app-image [variable]="'somevalue'"></app-image>
-    <app-image [variable]="'somevalue'"></app-image>
-    <app-image [variable]="'somevalue'"></app-image>
-    <app-image [variable]="'somevalue'"></app-image>
-    <app-image [variable]="'somevalue'"></app-image>
-    <app-image [variable]="'somevalue'"></app-image>
+    <ion-item>
+      <ion-grid class="ion-no-border no-margin-top" fixed>
+        <ion-row class="ion-justify-content-evenly ion-margin-vertical">
+          <ion-col size="2">
+            <ion-avatar style="margin: 0 auto;">
+              <img src="../../../../assets/image_test/avatar.png" alt="Profile image" />
+            </ion-avatar>
+          </ion-col>
+          <ion-col size="9">
+            <ion-text class="ion-text-center" color="light-shade">
+              <h1 class="no-margin-top no-margin-bottom ion-text-end">Awesome Name</h1>
+              <p class="no-margin-top ion-text-end" style="margin-bottom: 5px;">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, similique!
+              </p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-text-center ion-justify-content-evenly">
+          <ion-col class="ion-no-padding" size="4">
+            <ion-text color="light-tint">
+              <h3 class="ion-no-margin">Follwing</h3>
+            </ion-text>
+            <ion-badge color="secondary" mode="ios">100</ion-badge>
+          </ion-col>
+          <ion-col class="ion-no-padding" size="4">
+            <ion-text color="light-tint">
+              <h3 class="ion-no-margin">Followers</h3>
+            </ion-text>
+            <ion-badge color="secondary" mode="ios">100</ion-badge>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-segment color="secondary">
+            <ion-segment-button *ngFor="let page of pages" [routerLink]="page.url" [value]="page.title">
+              <ion-label color="light">{{page.title}}</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
   </ion-list>
-  <ion-infinite-scroll threshold="100px" [disabled]="false" position="bottom" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Caragando">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+</ion-header>
+<ion-content>
+  <ion-router-outlet></ion-router-outlet>
 </ion-content>
