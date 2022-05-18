@@ -2,11 +2,11 @@
   <ion-grid style="margin-top: 10px;" fixed>
     <ion-row class="ion-justify-content-evenly">
       <ion-col class="ion-align-self-center votes" size="2">
-        <ion-icon class="icon" name="caret-up-circle-outline"></ion-icon>
-        <ion-text class="votes ion-align-self-center" color="secondary">
+        <ion-icon mode="ios" class="icon" name="caret-up-circle-outline"></ion-icon>
+        <ion-text mode="ios" class="votes ion-align-self-center" color="secondary">
           <p class="votes-number">100k</p>
         </ion-text>
-        <ion-icon class="icon" name="caret-down-circle-outline"></ion-icon>
+        <ion-icon mode="ios" class="icon" name="caret-down-circle-outline"></ion-icon>
       </ion-col>
       <ion-col size="10">
         <div class="vertical-center">
@@ -22,9 +22,10 @@
   </ion-grid>
   <ion-card-content class="ion-justify-content-center" style="padding-top: 0;">
     <img src="../../../../assets/image_test/test.jpg" alt="Image" />
-    <ion-button (click)="onClick()" size="small" color="tertiary" style="margin-top: 6px; padding-left: 8px;">
-      <ion-icon style="margin: 0 5px;" name="chatbubbles-outline"></ion-icon>
-      <ion-label>Comments</ion-label>
+    <ion-button id="trigger-button" (click)="presentComents()" size="small" color="tertiary"
+      style="margin-top: 6px; padding-left: 8px;" mode="ios">
+      <ion-icon mode="ios" style="margin: 0 5px;" name="chatbubbles-outline"></ion-icon>
+      <ion-label mode="ios">Comments</ion-label>
     </ion-button>
   </ion-card-content>
 </ion-card>
