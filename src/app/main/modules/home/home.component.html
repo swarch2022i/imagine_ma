@@ -1,7 +1,15 @@
 <ion-content>
-  <app-image *ngFor="let image of images" [image]="image"></app-image>
-  <ion-infinite-scroll threshold="20%" [disabled]="false" position="bottom" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading images...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+  <ion-card color="transparent" *ngIf="showImages;else img">
+    <ion-img src="../../../../assets/image_test/travolta.gif"></ion-img>
+    <ion-card-title class="ion-text-center ion-margin-vertical">No image yet</ion-card-title>
+  </ion-card>
+  <ng-template #img>
+    <app-image *ngFor="let image of images" [image]="image"></app-image>
+    <ion-infinite-scroll threshold="20%" [disabled]="false" position="bottom" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading images...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ng-template>
+
+
 </ion-content>

@@ -11,6 +11,7 @@ import { queries } from 'src/app/shared/queries';
 })
 export class HomeComponent implements OnInit {
   images: Image[] = [];
+  showImages = false;
   constructor() {}
 
   async ngOnInit() {
@@ -25,6 +26,9 @@ export class HomeComponent implements OnInit {
       .catch((error) => {
         console.error(error);
       });
+    if (this.images.length > 0) {
+      this.showImages = true;
+    }
   }
 
   loadData(event) {
