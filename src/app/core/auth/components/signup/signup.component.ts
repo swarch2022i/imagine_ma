@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../auth.service';
 import { confirmedValidator } from '../../confirmed.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +16,8 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -35,6 +37,7 @@ export class SignupComponent implements OnInit {
       this.signupForm.controls['confirmPassword'].value,
     ).subscribe(({data})=>{
       console.log('data', data);
+      this.router.navigateByUrl('/home');
     }, (error) =>{
       console.log('error sending query',error);
     });

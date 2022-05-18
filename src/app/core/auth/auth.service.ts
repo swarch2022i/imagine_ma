@@ -1,10 +1,10 @@
+/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/dot-notation */
 import { Injectable } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';;
 import { Apollo, gql } from 'apollo-angular';
-import { Storage } from '@ionic/storage-angular';
 
 
 const loginAuth = gql`
@@ -40,27 +40,18 @@ query userById($id: Int!, $token: String!){
 })
 export class AuthService {
 
-  private _storage: Storage | null = null;
 
 
   constructor(
     private apollo: Apollo,
-    private storage: Storage
-  ){
-    this.init();
+  ){ }
+
+  public set(key: string, value: any) {
+    localStorage.setItem(key, value);
   }
 
-  async init(){
-    const storage = await this.storage.create();
-    this._storage = storage;
-  }
-
-  public set(key: string, value: any): Promise<any> {
-    return this._storage?.set(key, value);
-  }
-
-  public get(key: string): Promise<any> {
-    return this._storage?.get(key);
+  public get(key: string): any {
+    return localStorage.getItem(key);
   }
 
   login(usernameLogin: string, passwordLogin: string): Observable<any>{
@@ -88,35 +79,27 @@ export class AuthService {
     });
   }
 
-  async isLogin(): Promise<boolean>{
-    const id_storage = await this.get('ID_USER');
-    const token_storage = await this.get('ACCESS_TOKEN');
-    if(!id_storage){
-      console.log('id_storage2', id_storage);
+  isLogin(): boolean{
+    if(localStorage.getItem('ID_USER')){
+      return true;
+    }else{
       return false;
-    }else {
-      let flag: boolean;
-      const data1 = await this.apollo.watchQuery<any>({
-        query: getAuth,
-        variables: {
-          id: id_storage,
-          token: token_storage
-        }
-      }).valueChanges
-      .subscribe(({data})=>{
-        console.log('data', data);
-        flag = true;
-      }, (error) =>{
-        flag = false;
-      });
-      return flag;
     }
+  }
 
+  userById(id_user, token_user): Observable<any>{
+    return this.apollo.watchQuery<any>({
+      query: getAuth,
+      variables: {
+        id: id_user,
+        token: token_user
+      }
+    }).valueChanges;
   }
 
   signout(){
-    this._storage.remove('ID_USER');
-    this._storage.remove('ACCESS_TOKEN');
+    localStorage.removeItem('ID_USER');
+    localStorage.removeItem('ACCESS_TOKEN');
   }
 
 }

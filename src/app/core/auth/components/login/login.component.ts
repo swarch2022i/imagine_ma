@@ -4,6 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,13 +15,16 @@ import { AuthService } from '../../auth.service';
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
+  flag: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
+    this.isLogin();
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]]
@@ -32,11 +36,8 @@ export class LoginComponent implements OnInit {
       this.loginForm.controls["username"].value,
       this.loginForm.controls["password"].value
       ).subscribe(({data})=>{
-        this.authService.set('ACCESS_TOKEN', data['login']['token']);
-        this.authService.set('ID_USER', data['login']['id']);
-        this.authService.get('ACCESS_TOKEN').then((val) => {
-          console.log('ACCESS_TOKEN:', val);
-        });
+        localStorage.setItem('ACCESS_TOKEN', data['login']['token']);
+        localStorage.setItem('ID_USER', data['login']['id']);
       },(error)=>{
         console.log('error sending query', error);
       });;
@@ -46,9 +47,24 @@ export class LoginComponent implements OnInit {
     this.authService.signout();
   }
 
-  async testIsogin(){
-    const result = await this.authService.isLogin();
-    console.log('result',result);
+  isLogin(){
+    if(this.authService.isLogin()){
+      this.authService.userById(localStorage.getItem('ID_USER'), localStorage.getItem('ACCESS_TOKEN'))
+      .subscribe(({data})=>{
+        //que hacer cuando esta logeado
+        console.log('logeado');
+        this.router.navigateByUrl('/home');
+      }, (error)=>{
+        //que hacer cuando no esta logeado
+        console.log('nologeado');
+        this.flag=false;
+      });
+
+    }else{
+      //que hacer cuando no esta logeado
+      console.log('no logeado');
+      this.flag=false;
+    }
   }
 
   test() {
