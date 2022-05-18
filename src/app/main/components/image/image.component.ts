@@ -30,7 +30,8 @@ export class ImageComponent implements OnInit {
       showBackdrop: true,
       animated: true,
       handle: true,
-      backdropDismiss: false,
+      backdropDismiss: true,
+      mode: 'ios',
     });
     return modal.present();
   }
