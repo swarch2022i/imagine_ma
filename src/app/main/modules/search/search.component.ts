@@ -35,7 +35,11 @@ export class SearchComponent implements OnInit {
           },
         })
         .then((res) => {
-          this.images = res.data.data.imageByTag;
+          if (res.data.data.imageByTag.length > 0) {
+            this.images = res.data.data.imageByTag;
+          } else {
+            this.showEmptyList = true;
+          }
         })
         .catch((error) => {
           this.showEmptyList = true;

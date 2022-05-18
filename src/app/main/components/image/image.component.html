@@ -21,7 +21,7 @@
     </ion-row>
   </ion-grid>
   <ion-card-content class="ion-justify-content-center" style="padding-top: 0;">
-    <img src="../../../../assets/image_test/test.jpg" alt="Image" />
+    <img [src]="image.url" alt="Image" />
     <ion-button id="trigger-button" (click)="presentComents()" size="small" color="tertiary"
       style="margin-top: 6px; padding-left: 8px;" mode="ios">
       <ion-icon mode="ios" style="margin: 0 5px;" name="chatbubbles-outline"></ion-icon>
