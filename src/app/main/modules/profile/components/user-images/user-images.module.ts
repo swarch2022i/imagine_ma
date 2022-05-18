@@ -7,6 +7,10 @@ import { UserImagesRoutingModule } from './user-images-routing.module';
 
 @NgModule({
   declarations: [UserImagesComponent],
-  imports: [CommonModule, IonicModule, ImageModule, UserImagesRoutingModule],
+  imports: [
+    CommonModule,
+    IonicModule,
+    ImageModule,
+    UserImagesRoutingModule],
 })
 export class UserImagesModule { }

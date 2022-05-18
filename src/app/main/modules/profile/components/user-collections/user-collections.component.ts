@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Collection } from 'src/app/main/interfaces/image.interface';
+import { COLLECTION_MODEL, } from "../../../../models/image.model";
 
 @Component({
   selector: 'app-user-collections',
@@ -8,7 +9,7 @@ import { Collection } from 'src/app/main/interfaces/image.interface';
 })
 export class UserCollectionsComponent implements OnInit {
 
-  public collections: Collection[];
+  public collections: Collection[] = COLLECTION_MODEL;
 
   constructor() { }
 

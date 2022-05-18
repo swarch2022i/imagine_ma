@@ -1,5 +1,7 @@
-<ion-card>
-  <p>
-    user-collections works!
-  </p>
-</ion-card>
+<ion-content>
+  <app-collection></app-collection>
+  <ion-infinite-scroll threshold="50px" [disabled]="false" position="bottom" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Caragando">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

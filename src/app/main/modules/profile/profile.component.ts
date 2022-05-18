@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IMAGE_MODEL, } from "../../models/image.model";
-import { Image, Collection } from "../../interfaces/image.interface";
 import { PROFILE_PAGES } from "./models/page.model";
 
 @Component({

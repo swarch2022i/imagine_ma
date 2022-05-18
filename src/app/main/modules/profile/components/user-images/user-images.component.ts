@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IMAGE_MODEL, } from "../../../../models/image.model";
+import { Image } from 'src/app/main/interfaces/image.interface';
 
 @Component({
   selector: 'app-user-images',
@@ -8,7 +9,7 @@ import { IMAGE_MODEL, } from "../../../../models/image.model";
 })
 export class UserImagesComponent implements OnInit {
 
-  public images = IMAGE_MODEL;
+  public images: Image[] = IMAGE_MODEL;
 
   constructor() { }
 
