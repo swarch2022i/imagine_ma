@@ -1,8 +1,18 @@
-.alertVerification{
+.alertVerification {
   font-size: small;
   color: rgb(150, 0, 0);
 }
 
-.toast{
+.toast {
   width: 50%;
+}
+
+.content_log {
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  ion-card {
+    width: 100%;
+  }
 }
