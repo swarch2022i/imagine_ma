@@ -7,6 +7,11 @@ import { ImageModule } from '../../components/image/image.module';
 
 @NgModule({
   declarations: [ProfileComponent],
-  imports: [CommonModule, IonicModule, ProfileRoutingModule, ImageModule],
+  imports: [
+    CommonModule,
+    IonicModule,
+    ProfileRoutingModule,
+    ImageModule,
+  ],
 })
-export class ProfileModule {}
+export class ProfileModule { }

@@ -1,6 +1,7 @@
 import { Image } from './../../interfaces/image.interface';
 import { Component, Input, OnInit } from '@angular/core';
-import {} from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { ComentsComponent } from '../coments/coments.component';
 
 @Component({
   selector: 'app-image',
@@ -9,15 +10,28 @@ import {} from '@ionic/angular';
 })
 export class ImageComponent implements OnInit {
   @Input() image: Image;
-  constructor() {}
 
-  ngOnInit() {}
+  constructor(public modalControler: ModalController) {}
 
-  openComments() {
-    console.log('as');
+  ngOnInit() {
+    // TODO document why this method 'ngOnInit' is empty
   }
 
-  onClick() {
-    console.log('Click on comment');
+  async presentComents() {
+    const modal = await this.modalControler.create({
+      component: ComentsComponent,
+      componentProps: {
+        variable: 'esto es una puta variable',
+      },
+      breakpoints: [0, 0.2, 0.6, 0.8, 1],
+      cssClass: 'modal-coments',
+      backdropBreakpoint: 0.2,
+      initialBreakpoint: 1,
+      showBackdrop: true,
+      animated: true,
+      handle: true,
+      backdropDismiss: false,
+    });
+    return modal.present();
   }
 }
