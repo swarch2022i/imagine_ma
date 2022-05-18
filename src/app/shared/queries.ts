@@ -43,13 +43,12 @@ export const queries = {
   allImages: `query{
   allImages{
     id
+    url
     name
     description
-    tags
+    tag
     ownerId
     commentsId
-    imageStorageId
-    url
   }
 }`,
 };
