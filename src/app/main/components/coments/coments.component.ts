@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IonRouterOutlet, } from "@ionic/angular";
 
 @Component({
   selector: 'app-coments',
@@ -7,20 +6,16 @@ import { IonRouterOutlet, } from "@ionic/angular";
   styleUrls: ['./coments.component.scss'],
 })
 export class ComentsComponent implements OnInit {
-
   @Input() variable;
 
-  constructor(
-    // TODO preguntar a Johan por que no funciona public routerOutlet: IonRouterOutlet,
-  ) { }
+  constructor() // TODO preguntar a Johan por que no funciona public routerOutlet: IonRouterOutlet,
+  {}
 
   ngOnInit() {
     // TODO document why this method 'ngOnInit' is empty
   }
 
-  async canDissmis() {
-  }
-
+  async canDissmis() {}
 
   onClick() {
     console.log('click');

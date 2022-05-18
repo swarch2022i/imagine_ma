@@ -1,9 +1,7 @@
-<ion-card>
-  <ion-card-header>
-    <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
-    <ion-card-title>Home</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    Awesome content
-  </ion-card-content>
-</ion-card>
+<ion-content>
+  <app-image *ngFor="let image of images" [image]="image"></app-image>
+  <ion-infinite-scroll threshold="20%" [disabled]="false" position="bottom" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading images...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
