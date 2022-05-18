@@ -10,7 +10,7 @@ import { PROFILE_PAGES } from "./models/page.model";
 })
 export class ProfileComponent implements OnInit {
 
-  public pages = PROFILE_PAGES[0];
+  public pages = PROFILE_PAGES;
 
   constructor() { }
 
