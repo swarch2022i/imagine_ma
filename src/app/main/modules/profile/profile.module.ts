@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { ProfileRoutingModule } from './profile-routing.module';
+import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './profile.component';
+import { ProfileRoutingModule } from './profile-routing.module';
+import { ImageModule } from '../../components/image/image.module';
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -10,6 +11,7 @@ import { ProfileComponent } from './profile.component';
     CommonModule,
     IonicModule,
     ProfileRoutingModule,
+    ImageModule,
   ],
 })
 export class ProfileModule { }

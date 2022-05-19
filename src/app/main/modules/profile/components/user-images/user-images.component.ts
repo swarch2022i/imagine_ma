@@ -16,7 +16,6 @@ export class UserImagesComponent implements OnInit {
   ngOnInit() { }
 
   loadData(e) {
-    console.log("load more images")
+    console.log('load more images');
   }
-
 }

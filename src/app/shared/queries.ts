@@ -43,15 +43,24 @@ export const queries = {
   allImages: `query{
   allImages{
     id
+    url
     name
     description
-    tags
+    tag
     ownerId
     commentsId
-    imageStorageId
-    url
   }
 }`,
+
+  signup: `mutation{
+    createUserAUTH(user:{
+      username: $username,
+      password: $password
+    }){
+      id,
+      username
+    }
+  }`
 };
 
 //example

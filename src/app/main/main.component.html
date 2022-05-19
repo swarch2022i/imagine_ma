@@ -2,7 +2,8 @@
   <ion-menu #menu content-id="main-content" menuId="custom" side="start">
     <ion-header>
       <ion-toolbar>
-        <ion-title>Imagine</ion-title>
+        <!-- <ion-title>Imagine</ion-title> -->
+        <ion-img slot="start" src="../../assets/icon/logo.png" style="height: 25px; margin-left: 20px"></ion-img>
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -13,7 +14,7 @@
       </ion-item>
     </ion-content>
     <ion-footer>
-      <ion-item button>
+      <ion-item button (click)="logout()">
         <ion-icon slot="start" name="log-out-outline"></ion-icon>
         <ion-label>Logout</ion-label>
       </ion-item>
@@ -24,8 +25,9 @@
     <ion-header>
       <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-button (click)="onClick()">
-            <ion-menu-button auto-hide="false"></ion-menu-button>
+          <ion-button>
+            <ion-menu-button auto-hide=" false">
+            </ion-menu-button>
           </ion-button>
         </ion-buttons>
         <ion-buttons slot="primary">
@@ -36,7 +38,7 @@
             <ion-icon slot="icon-only" name="duplicate-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
-        <ion-title>Imagine</ion-title>
+        <ion-img slot="start" src="../../assets/icon/logo.png" style="height: 25px;"></ion-img>
       </ion-toolbar>
     </ion-header>
     <ion-content>

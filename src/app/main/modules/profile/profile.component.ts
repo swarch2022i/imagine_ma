@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PROFILE_PAGES } from "./models/page.model";
+import { PROFILE_MODEL } from '../../models/image.model';
+import { PROFILE_PAGES } from './models/page.model';
+import { Profile } from '../../interfaces/image.interface';
 
 @Component({
   selector: 'app-profile',
@@ -7,8 +9,9 @@ import { PROFILE_PAGES } from "./models/page.model";
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-
   public pages = PROFILE_PAGES;
+
+  profile: Profile = PROFILE_MODEL[0];
 
   constructor() { }
 

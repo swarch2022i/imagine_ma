@@ -1,8 +1,37 @@
 <ion-content>
-  <ion-list [formGroup]="form">
-    <ion-input formControlName="username" type="text"> </ion-input>
-  </ion-list>
-  <ion-button (click)="test()">
-    <ion-icon slot="icon-only" name="add"></ion-icon>
-  </ion-button>
+  <ion-row class="content_log">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Log In</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form class="ion-margin-vertical" [formGroup]="loginForm" (ngSubmit)="!loginForm.invalid && login()">
+          <ion-item class="form-goup">
+            <ion-label for="username">Username</ion-label>
+            <ion-input novalidate id="username" class="form_control" formControlName="username" placeholder="username">
+            </ion-input>
+            <ion-item class="alertVerification alert alert-danger alert-dismissible fade show"
+              *ngIf="loginForm.get('username')!.hasError('required') &&loginForm.get('username')!.touched">
+              username required
+            </ion-item>
+          </ion-item>
+          <ion-item class="form-goup">
+            <ion-label for="password">password</ion-label>
+            <ion-input novalidate id="password" class="form_control" type="password" formControlName="password"
+              placeholder="******"></ion-input>
+            <ion-item class="alertVerification alert alert-danger alert-dismissible fade show"
+              *ngIf="loginForm.get('password')!.hasError('required') &&loginForm.get('password')!.touched">
+              password required
+            </ion-item>
+          </ion-item>
+          <ion-row class="ion-justify-content-center ion-margin-vertical">
+            <ion-button type="submit" color="light" class="ion-margin-horizontal" [disabled]="!loginForm.valid">LogIn
+            </ion-button>
+            <ion-button type="button" color="dark" class="ion-margin-horizontal" routerLink="/auth/signup">SignUp
+            </ion-button>
+          </ion-row>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
 </ion-content>

@@ -1,0 +1,28 @@
+.toolbar-empty {
+	--background: var(--ion-color-tertiary-shade);
+	--border-color: var(--ion-color-primary);
+	--border-style: solid;
+	--border-width: 4px;
+	--min-height: 40px;
+	--opacity: 1;
+	--padding-top: 5px;
+	--padding-bottom: 5px;
+	--padding-start: 40px;
+	--padding-end: 10px;
+}
+
+.item-test {
+	--background: var(--ion-color-primary-tint);
+	--border-color: var(--ion-color-primary);
+	--border-radius: 8px;
+	--border-style: solid;
+	--color: #ffffff;
+	--color-activated: var(--ion-color-secondary);
+	--color-focused: var(--ion-color-medium-shade);
+	--highlight-color-focused: var(--ion-color-medium-tint);
+	--highlight-color-invalid: var(--ion-color-warnnig-tint);
+	--highlight-color-valid: var(--ion-color-success-tint);
+	--transition: background-color 15ms linear;
+	--inner-padding-start: 20px;
+	margin: 8px;
+}
