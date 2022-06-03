@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PROFILE_MODEL } from '../../models/image.model';
 import { PROFILE_PAGES } from './models/page.model';
 import { Profile } from '../../interfaces/image.interface';
-
+import axios from 'axios';
+import { environment as env } from './../../../../environments/environment';
+import { GraphService } from 'src/app/shared/graph.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -13,18 +15,26 @@ export class ProfileComponent implements OnInit {
 
   profile: Profile = PROFILE_MODEL[0];
 
-  constructor() { }
+  constructor(private graph: GraphService) {}
 
-  ngOnInit() { }
+  async ngOnInit() {
+    axios
+      .post(`${env.baseUrl}${env.graphPort}/${env.graph}`, {
+        query: this.graph.getPerfilByIdUsuario(localStorage.getItem('ID_USER')),
+      })
+      .then((res) => {
+        this.profile = res.data.data.getPerfilByIdUsuario;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   loadData(event: { target: { complete: () => void; disabled: boolean } }) {
     setTimeout(() => {
       console.log(event);
       event.target.complete();
-
       const data = new Array(4);
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
       if (data.length === 1000) {
         event.target.disabled = true;
       }

@@ -22,35 +22,44 @@ export const IMAGE_MODEL: image.Image[] = [
     commentsId: 'string',
     url: '../../../assets/image_test/test.jpg',
   },
+  {
+    uuid: 'asdasd',
+    name: 'test33',
+    description: 'string',
+    commentsId: 'string',
+    url: '../../../assets/image_test/1.jfif',
+  },
+  {
+    uuid: 'asdasd',
+    name: 'test33',
+    description: 'string',
+    commentsId: 'string',
+    url: '../../../assets/image_test/2.jfif',
+  },
+  {
+    uuid: 'asdasd',
+    name: 'test33',
+    description: 'string',
+    commentsId: 'string',
+    url: '../../../assets/image_test/3.jpg',
+  },
 ];
 
 export const PROFILE_MODEL: image.Profile[] = [
   {
-    name: 'Julius84',
-    followers: 8000,
-    following: 1,
-    text: 'no se que poner aqui, subo imagenes aestethics!',
-    urlProfileImage: '../../../assets/image_test/test.jpg',
-  },
-  {
-    name: 'test2',
-    followers: 5645,
-    following: 54984,
-    text: 'lorem impsum dorlor jasdjasjdjsad laksdhkasdjfhj ahgdk',
-    urlProfileImage: '../../../assets/image_test/test.jpg',
-  },
-  {
-    name: 'test33',
-    followers: 0,
-    following: 0,
-    text: 'lorem impsum dorlor jasdjasjdjsad laksdhkasdjfhj ahgdk',
-    urlProfileImage: '../../../assets/image_test/test.jpg',
+    id: 7,
+    idImagenPerfil: 'defaul',
+    idUsuario: '16',
+    nombre: 'johantesteo',
+    numfollowBy: 0,
+    numfollowers: 0,
+    texto: null,
   },
 ];
 
 export const COLLECTION_MODEL: image.Collection[] = [
   {
-    uuid: "asdasd",
+    uuid: 'asdasd',
     title: 'test',
     description: 'me describo',
     imagesId: ['1', '2', '3'],

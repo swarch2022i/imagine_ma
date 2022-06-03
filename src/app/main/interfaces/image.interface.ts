@@ -14,9 +14,11 @@ export interface Collection {
 }
 
 export interface Profile {
-  name: string;
-  followers: number;
-  following: number;
-  urlProfileImage: string;
-  text: string;
+  id: number;
+  idImagenPerfil: string;
+  idUsuario: string;
+  nombre: string;
+  numfollowBy: number;
+  numfollowers: number;
+  texto: string;
 }

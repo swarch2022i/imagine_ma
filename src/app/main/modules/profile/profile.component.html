@@ -5,14 +5,16 @@
         <ion-row class="ion-justify-content-evenly ion-margin-vertical">
           <ion-col size="2">
             <ion-avatar style="margin: 0 auto;">
-              <img [src]="profile.urlProfileImage" alt="Profile image" />
+              <img
+                [src]="profile.idImagenPerfil==='defaul'?'../.././../../assets/image_test/avatar.png':profile.idImagenPerfil"
+                alt="Profile image" />
             </ion-avatar>
           </ion-col>
           <ion-col size="9">
             <ion-text class="ion-text-center" color="light-shade">
-              <h1 class="no-margin-top no-margin-bottom ion-text-end">{{profile.name}}</h1>
+              <h1 class="no-margin-top no-margin-bottom ion-text-end">{{profile.nombre}}</h1>
               <p class="no-margin-top ion-text-end" style="margin-bottom: 5px;">
-                {{profile.text}}
+                {{profile.texto === null ? 'lorem impusm is dolor' : profile.texto}}
               </p>
             </ion-text>
           </ion-col>
@@ -22,13 +24,13 @@
             <ion-text color="light-tint">
               <h3 class="ion-no-margin">Following</h3>
             </ion-text>
-            <ion-badge color="secondary" mode="ios">{{profile.following}}</ion-badge>
+            <ion-badge color="secondary" mode="ios">{{profile.numfollowBy}}</ion-badge>
           </ion-col>
           <ion-col class="ion-no-padding" size="4">
             <ion-text color="light-tint">
               <h3 class="ion-no-margin">Followers</h3>
             </ion-text>
-            <ion-badge color="secondary" mode="ios">{{profile.followers}}</ion-badge>
+            <ion-badge color="secondary" mode="ios">{{profile.numfollowers}}</ion-badge>
           </ion-col>
         </ion-row>
         <ion-row>

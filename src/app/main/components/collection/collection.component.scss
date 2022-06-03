@@ -1,9 +1,12 @@
 .collection-content {
-	--ion-grid-column-padding: 8px;
-	--background: var(--ion-color-light);
+  --ion-grid-column-padding: 8px;
+  --background: var(--ion-color-light);
 }
 
 .image-miniature {
-	--border-radius: 8px;
-	display: inline-flex;
+  --border-radius: 8px;
+  --size: 84px;
+  --padding-star: 100px;
+  display: inline-flex;
+  opacity: 0.8;
 }

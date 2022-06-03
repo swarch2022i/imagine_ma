@@ -1,6 +1,6 @@
+import { GraphService } from './../../../shared/graph.service';
 import { AlertController } from '@ionic/angular';
 import { Image } from './../../interfaces/image.interface';
-import { queries } from './../../../shared/queries';
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { environment as env } from './../../../../environments/environment';
@@ -13,7 +13,10 @@ import { environment as env } from './../../../../environments/environment';
 export class SearchComponent implements OnInit {
   public images: Image[] = [];
   public showEmptyList = false;
-  constructor(private alertController: AlertController) {}
+  constructor(
+    private alertController: AlertController,
+    private graph: GraphService
+  ) {}
 
   ngOnInit() {}
 
@@ -29,14 +32,12 @@ export class SearchComponent implements OnInit {
     if (value.includes('#')) {
       axios
         .post(`${env.baseUrl}${env.graphPort}/${env.graph}`, {
-          query: queries.imageByTag,
-          variables: {
-            tag: value.substring(1),
-          },
+          query: this.graph.imageByTag(value.substring(1)),
         })
         .then((res) => {
           if (res.data.data.imageByTag.length > 0) {
             this.images = res.data.data.imageByTag;
+            console.log(this.images);
           } else {
             this.showEmptyList = true;
           }
@@ -57,14 +58,12 @@ export class SearchComponent implements OnInit {
     //search by name
     axios
       .post(`${env.baseUrl}${env.graphPort}/${env.graph}`, {
-        query: queries.imageByName,
-        variables: {
-          name: value,
-        },
+        query: this.graph.imageByName(value),
       })
       .then((res) => {
         if (res.data.data) {
           this.images = res.data.data.imageByName;
+          console.log(this.images);
         } else {
           this.showEmptyList = true;
         }

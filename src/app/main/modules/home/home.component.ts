@@ -2,7 +2,8 @@ import { Image } from './../../interfaces/image.interface';
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { environment as env } from './../../../../environments/environment';
-import { queries } from 'src/app/shared/queries';
+import { GraphService } from 'src/app/shared/graph.service';
+import { IMAGE_MODEL } from '../../models/image.model';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +12,16 @@ import { queries } from 'src/app/shared/queries';
 })
 export class HomeComponent implements OnInit {
   images: Image[] = [];
+  // images: Image[] = IMAGE_MODEL;
   showImages = false;
-  constructor() {}
+  constructor(private graph: GraphService) {}
 
   async ngOnInit() {
     this.showImages = false;
+    console.log(this.images);
     axios
       .post(`${env.baseUrl}${env.graphPort}/${env.graph}`, {
-        query: queries.allImages,
+        query: this.graph.allImages(),
       })
       .then((res) => {
         console.log(res.data.data.allImages);
