@@ -16,4 +16,9 @@ export const APP_PAGES: AppPage[] = [
     title: 'profile',
     url: '/profile',
   },
+  {
+    icon: 'id-card-outline',
+    title: 'soap',
+    url: '/soap',
+  },
 ];

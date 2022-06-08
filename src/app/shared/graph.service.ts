@@ -73,8 +73,9 @@ export class GraphService {
 
   public allImagesStorage() {
     const query = `query{
-    allImageStorage{
-      url
+      allImageStorage{
+        url
+      }
     }
     `;
     return query;
@@ -119,6 +120,21 @@ export class GraphService {
       }){
         id,
         username
+      }
+    }`;
+    return mutation;
+  }
+
+  public profileById(id) {
+    const mutation = `query{
+      PerfilById(id:${id}){
+        nombre
+        id
+        idImagenPerfil
+        numfollowBy
+        numfollowers
+        texto
+        idUsuario
       }
     }`;
     return mutation;

@@ -18,14 +18,13 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     this.showImages = false;
-    console.log(this.images);
     axios
-      .post(`${env.baseUrl}${env.graphPort}/${env.graph}`, {
-        query: this.graph.allImages(),
+      .post(`${env.baseUrl}/${env.graph}`, {
+        query: this.graph.allImagesStorage(),
       })
       .then((res) => {
-        console.log(res.data.data.allImages);
-        this.images = res.data.data.allImages;
+        console.log(res.data.data.allImageStorage);
+        this.images = res.data.data.allImageStorage;
       })
       .catch((error) => {
         console.error(error);

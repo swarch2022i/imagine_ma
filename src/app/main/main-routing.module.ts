@@ -47,6 +47,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./modules/search/search.module').then((m) => m.SearchModule),
       },
+      {
+        path: 'soap',
+        loadChildren: () =>
+          import('./modules/soap/soap.module').then((m) => m.SoapModule),
+      },
     ],
   },
 ];

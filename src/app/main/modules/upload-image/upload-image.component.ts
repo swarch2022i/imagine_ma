@@ -1,3 +1,4 @@
+import { GraphService } from 'src/app/shared/graph.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, LoadingController } from '@ionic/angular';
@@ -27,12 +28,13 @@ export class UploadImageComponent implements OnInit {
   public loadImage = false;
   public tags: string[] = [];
   public showButton = true;
-  private user = USER;
+  private user = null;
 
   constructor(
     private alertController: AlertController,
     private loadingController: LoadingController,
-    private router: Router
+    private router: Router,
+    private graph: GraphService
   ) {}
 
   ngOnInit() {}
@@ -43,7 +45,7 @@ export class UploadImageComponent implements OnInit {
     this.showButton = false;
   }
 
-  public publish() {
+  public async publish() {
     //validation
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -55,10 +57,21 @@ export class UploadImageComponent implements OnInit {
       return;
     }
 
-    //upload Object
+    await axios
+      .post(`${env.baseUrl}/${env.graph}`, {
+        query: this.graph.profileById(localStorage.getItem('ID_USER')),
+      })
+      .then((res) => {
+        this.user = res.data.data.PerfilById;
+        console.log(this.user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
     const upload = {
       images: this.file,
-      userId: this.user[0].userId,
+      userId: this.user.idUsuario,
       name: this.form.value.title,
       description: this.form.value.description,
       commentsId: '',
@@ -83,6 +96,7 @@ export class UploadImageComponent implements OnInit {
       })
       .catch((error) => {
         this.presentAlert(error.message);
+        console.log('error');
         console.log(error);
       });
 

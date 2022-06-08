@@ -29,15 +29,16 @@ export class SearchComponent implements OnInit {
     }
 
     //tag ---> #
+    console.log(this.graph.imageByTag(value.substring(1)));
     if (value.includes('#')) {
       axios
-        .post(`${env.baseUrl}${env.graphPort}/${env.graph}`, {
+        .post(`${env.baseUrl}/${env.graph}`, {
           query: this.graph.imageByTag(value.substring(1)),
         })
         .then((res) => {
+          console.log(res);
           if (res.data.data.imageByTag.length > 0) {
             this.images = res.data.data.imageByTag;
-            console.log(this.images);
           } else {
             this.showEmptyList = true;
           }
@@ -57,10 +58,11 @@ export class SearchComponent implements OnInit {
 
     //search by name
     axios
-      .post(`${env.baseUrl}${env.graphPort}/${env.graph}`, {
+      .post(`${env.baseUrl}/${env.graph}`, {
         query: this.graph.imageByName(value),
       })
       .then((res) => {
+        console.log(res);
         if (res.data.data) {
           this.images = res.data.data.imageByName;
           console.log(this.images);

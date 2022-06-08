@@ -48,10 +48,10 @@ export class SignupComponent implements OnInit {
       )
       .subscribe(
         async ({ data }) => {
-          console.log(`${env.baseUrl}${env.graphPort}/${env.graph}`);
+          console.log(`${env.baseUrl}/${env.graph}`);
           //create profile
           axios
-            .post(`${env.baseUrl}${env.graphPort}/${env.graph}`, {
+            .post(`${env.baseUrl}/${env.graph}`, {
               query: this.graph.mutationSingUp(
                 data.createUserAUTH.id,
                 data.createUserAUTH.username

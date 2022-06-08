@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // baseUrl: 'http://35.232.133.8:',
-  baseUrl: 'http://localhost:',
+  baseUrl: 'http://graph-imagine.duckdns.org',
+  // baseUrl: 'http://localhost:',
   graph: 'graphql',
   graphPort: '5000',
   portStorage: '1234',

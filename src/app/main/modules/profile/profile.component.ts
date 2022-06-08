@@ -19,11 +19,12 @@ export class ProfileComponent implements OnInit {
 
   async ngOnInit() {
     axios
-      .post(`${env.baseUrl}${env.graphPort}/${env.graph}`, {
-        query: this.graph.getPerfilByIdUsuario(localStorage.getItem('ID_USER')),
+      .post(`${env.baseUrl}/${env.graph}`, {
+        query: this.graph.profileById(localStorage.getItem('ID_USER')),
       })
       .then((res) => {
-        this.profile = res.data.data.getPerfilByIdUsuario;
+        console.log(res.data.data.PerfilById);
+        this.profile = res.data.data.PerfilById;
       })
       .catch((error) => {
         console.error(error);
