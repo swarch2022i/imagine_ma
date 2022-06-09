@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://graph-imagine.duckdns.org',
+  baseUrl: 'https://graph-imagine.duckdns.org',
   // baseUrl: 'http://localhost:',
   graph: 'graphql',
   graphPort: '5000',
-  storage: 'http://34.134.27.239:1234',
+  storage: 'https://34.134.27.239:1234',
   endpointStorage: 'api/storage/upload',
 };
 
