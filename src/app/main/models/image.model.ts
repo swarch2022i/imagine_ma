@@ -49,7 +49,7 @@ export const PROFILE_MODEL: image.Profile[] = [
   {
     id: 7,
     idImagenPerfil: 'defaul',
-    idUsuario: '16',
+    idUsuario: 'johantesteo',
     nombre: 'johantesteo',
     numfollowBy: 0,
     numfollowers: 0,

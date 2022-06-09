@@ -1,3 +1,5 @@
+import { Profile } from './../../interfaces/image.interface';
+import { PROFILE_MODEL } from './../../models/image.model';
 import { GraphService } from 'src/app/shared/graph.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -28,7 +30,7 @@ export class UploadImageComponent implements OnInit {
   public loadImage = false;
   public tags: string[] = [];
   public showButton = true;
-  private user = null;
+  private user = USER[0];
 
   constructor(
     private alertController: AlertController,
@@ -57,17 +59,16 @@ export class UploadImageComponent implements OnInit {
       return;
     }
 
-    await axios
-      .post(`${env.baseUrl}/${env.graph}`, {
-        query: this.graph.profileById(localStorage.getItem('ID_USER')),
-      })
-      .then((res) => {
-        this.user = res.data.data.PerfilById;
-        console.log(this.user);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    // await axios
+    //   .post(`${env.baseUrl}/${env.graph}`, {
+    //     query: this.graph.profileById(localStorage.getItem('ID_USER')),
+    //   })
+    //   .then((res) => {
+    //     this.user = res.data.data.PerfilById;
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
 
     const upload = {
       images: this.file,
@@ -84,7 +85,7 @@ export class UploadImageComponent implements OnInit {
 
     this.presentLoading();
     axios
-      .post(`${env.baseUrl}${env.portStorage}/${env.endpointStorage}`, formData)
+      .post(`${env.storage}/${env.endpointStorage}`, formData)
       .then((response) => {
         this.router.navigate(['/home']);
         this.form.reset();

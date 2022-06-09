@@ -8,7 +8,7 @@ export const environment = {
   // baseUrl: 'http://localhost:',
   graph: 'graphql',
   graphPort: '5000',
-  portStorage: '1234',
+  storage: 'http://34.134.27.239:1234',
   endpointStorage: 'api/storage/upload',
 };
 

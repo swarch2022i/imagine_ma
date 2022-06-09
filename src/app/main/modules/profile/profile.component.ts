@@ -23,7 +23,6 @@ export class ProfileComponent implements OnInit {
         query: this.graph.profileById(localStorage.getItem('ID_USER')),
       })
       .then((res) => {
-        console.log(res.data.data.PerfilById);
         this.profile = res.data.data.PerfilById;
       })
       .catch((error) => {
